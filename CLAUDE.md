@@ -40,7 +40,7 @@ The `skills` CLI only installs skills, so commands and rules are skills too. The
 - `name` in the frontmatter equals the directory name (kebab-case).
 - The description decides triggering. Name neighbouring skills ("for X use `other-skill`") so skills don't compete.
 - Keep `SKILL.md` focused: hard rules and steps first, long catalogues in sibling files.
-- When adding, renaming or removing a skill, update the README Reference list in the same change.
+- **Every change to a skill updates `README.md` in the same change.** That includes adding, renaming or removing a skill, and also any change to its scope or behaviour (new rules, new modes, changed triggers). The README entry must describe what the skill does now, in the right section (Skills / Commands / Rules). If the README really needs no change, check it anyway.
 
 ## Commits
 
