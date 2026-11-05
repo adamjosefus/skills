@@ -32,7 +32,7 @@ Knowledge and workflows the agent loads on its own when the task matches.
 
 Actions you run explicitly with `/<name>`. The agent never triggers them by itself.
 
-- **[typography-css-reset](./skills/typography-css-reset/SKILL.md)**: Adds a modern CSS text reset to the project, adapted to its fonts, tokens and stylesheet setup.
+- **[typography-css-reset](./skills/typography-css-reset/SKILL.md)**: Adds a modern CSS text reset to the project, adapted to its fonts, tokens, dark-mode switch and stylesheet setup.
 
 ### Rules
 

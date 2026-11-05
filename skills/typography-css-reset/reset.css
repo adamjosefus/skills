@@ -94,7 +94,12 @@
   }
 }
 
-/* Lighter grade in dark mode. Only for variable fonts with a GRAD axis.
+/* Optical weight in dark mode: light text on dark looks heavier, so make it lighter.
+ * Keep ONE of the two variants below, or neither for static fonts.
+ * Replace the media query with the project's dark-mode switch ([data-theme="dark"], .dark, …).
+ * Values are a starting point: compare both schemes and tune by eye. */
+
+/* Variant A: font has a GRAD axis. Preferred: widths don't change, nothing reflows.
  * font-variation-settings replaces rather than merges: components that set their own must repeat GRAD. */
 :root {
   --font-grade: 0;
@@ -108,4 +113,24 @@
 
 :where(body) {
   font-variation-settings: "GRAD" var(--font-grade);
+}
+
+/* Variant B: variable font with wght but no GRAD. Text may rewrap when the theme switches.
+ * If the project has font-weight tokens, apply the shift to those instead of these selectors. */
+:root {
+  --font-weight-shift: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-weight-shift: -50;
+  }
+}
+
+:where(body) {
+  font-weight: calc(400 + var(--font-weight-shift));
+}
+
+:where(b, strong, h1, h2, h3, h4, h5, h6, th) {
+  font-weight: calc(700 + var(--font-weight-shift));
 }

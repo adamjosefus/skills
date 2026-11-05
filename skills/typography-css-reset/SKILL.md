@@ -19,11 +19,12 @@ Installs [reset.css](reset.css) into the current project, adapted to it. It does
 
 1. **Find the stylesheet setup.** Global CSS entry (e.g. `globals.css`, `app.css`, `main.scss`), any existing reset (`modern-normalize`, Tailwind preflight, custom), `@layer` order, and CSS framework.
 2. **Check `lang`.** Confirm `<html lang="…">` is set and correct. Hyphenation and quotes depend on it. If it's missing, add it or flag it.
-3. **Inspect the fonts.** For each family, check whether it's variable, has a `GRAD` axis, has old-style figures, and has sub/superscript glyphs (font files, the foundry page, or the Google Fonts axis list). Remove the OPTIONAL blocks that don't apply.
-4. **Map tokens and scope.** Rename `--measure` to the project's existing token if there is one. Replace `.prose` with the project's prose/content class (or Tailwind Typography's `.prose` if present).
-5. **Write the file** next to the other global styles and import it right after the existing reset, before component styles.
-6. **Tailwind:** put the rules in `@layer base` and don't duplicate what preflight already sets.
-7. **Verify** in the browser if the project can run: a prose page and a dense UI screen, light and dark, at 200% zoom.
+3. **Inspect the fonts.** For each family, check whether it's variable, which axes it has (`GRAD`, `wght`) and their ranges, whether it has old-style figures, and whether it has sub/superscript glyphs (font files, the foundry page, or the Google Fonts axis list). Remove the OPTIONAL blocks that don't apply. For dark-mode weight, keep variant A if the font has `GRAD`, else variant B if it has `wght`, else neither.
+4. **Find the dark-mode switch** (`prefers-color-scheme`, `[data-theme="dark"]`, `.dark`, …) and use it in place of the media query in the dark-mode block.
+5. **Map tokens and scope.** Rename `--measure` to the project's existing token if there is one. Replace `.prose` with the project's prose/content class (or Tailwind Typography's `.prose` if present).
+6. **Write the file** next to the other global styles and import it right after the existing reset, before component styles.
+7. **Tailwind:** put the rules in `@layer base` and don't duplicate what preflight already sets.
+8. **Verify** in the browser if the project can run: a prose page and a dense UI screen, light and dark, at 200% zoom.
 
 ## Summary to the user
 
