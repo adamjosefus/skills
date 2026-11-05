@@ -1,6 +1,12 @@
 # Skills
 
-My personal collection of agent skills: workflows, commands and rules I want in every project.
+[![skills.sh](https://skills.sh/b/adamjosefus/skills)](https://skills.sh/adamjosefus/skills)
+
+Agent skills, commands and rules I use in every project.
+
+Agents are fast, but they don't know the small rules that decide whether a result looks right. They write `"quotes"` in Czech text, leave a one-letter preposition hanging at the end of a line, and let light text in dark mode look heavier than the same text in light mode.
+
+These skills write those rules down, so the agent gets them right the first time and I don't have to repeat them in every prompt.
 
 ## Install
 
@@ -11,7 +17,7 @@ npx skills@latest add adamjosefus/skills
 Install a single skill:
 
 ```bash
-npx skills@latest add adamjosefus/skills --skill <name>
+npx skills@latest add adamjosefus/skills --skill typography-czech
 ```
 
 List what's available without installing:
@@ -20,22 +26,14 @@ List what's available without installing:
 npx skills@latest add adamjosefus/skills --list
 ```
 
+## Why use it?
+
+Small mistakes compound. Straight quotes instead of „české“, a hyphen where a dash belongs, `30%` where it should be `30 %`, a text reset that breaks your buttons because hyphenation was applied globally. Each one is minor; together they make the result feel careless.
+
+Each skill lists the mistakes agents typically make in its area and how to fix them.
+
 ## Reference
 
-### Skills
-
-Knowledge and workflows the agent loads on its own when the task matches.
-
-- **[typography-czech](./skills/typography-czech/SKILL.md)**: Czech typographic rules (ČSN 01 6910). Writes Czech text correctly, and checks and fixes existing texts: quotes, dashes, non-breaking spaces, numbers, units and dates.
-
-### Commands
-
-Actions you run explicitly with `/<name>`. The agent never triggers them by itself.
-
-- **[typography-css-reset](./skills/typography-css-reset/SKILL.md)**: Adds a modern CSS text reset to the project, adapted to its fonts, tokens, dark-mode switch and stylesheet setup.
-
-### Rules
-
-Conventions the agent follows whenever it works in the area they cover.
-
-- **[typography-css](./skills/typography-css/SKILL.md)**: Wrapping, hyphenation, vertical trim, underlines, numerals, quotes, variable fonts and optical weight compensation in dark mode, scoped so they stay overridable.
+- **[typography-css](./skills/typography-css/SKILL.md)**: How text should render: wrapping, hyphenation, vertical trim, underlines, numerals, variable fonts and optical weight in dark mode, scoped so it never breaks your UI.
+- **[typography-css-reset](./skills/typography-css-reset/SKILL.md)**: Run `/typography-css-reset` to add a modern CSS text reset to your project, adapted to its fonts, tokens and dark-mode switch, instead of pasting a generic one.
+- **[typography-czech](./skills/typography-czech/SKILL.md)**: Writes Czech text by Czech typographic rules (ČSN 01 6910), and checks and fixes existing texts: quotes, dashes, non-breaking spaces, numbers, units and dates.
