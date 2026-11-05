@@ -1,0 +1,111 @@
+/*
+ * Typography reset.
+ * Every rule uses :where() (zero specificity), so a single class overrides it.
+ * Every property is progressive enhancement: unsupported ones are ignored.
+ * Sections marked OPTIONAL depend on the project's fonts; remove them if they don't apply.
+ */
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --measure: 65ch;
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ---------- Global (safe for app UI) ---------- */
+
+:where(body) {
+  font-size-adjust: from-font;
+}
+
+:where(h1, h2, h3, h4, h5, h6, blockquote, figcaption) {
+  text-wrap: balance;
+}
+
+:where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+:where([contenteditable]:not([contenteditable="false"]), textarea) {
+  text-wrap: stable;
+}
+
+:where(a) {
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: auto;
+}
+
+:where(table, time, data, output, .tabular) {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------- Prose (article bodies, CMS content) ---------- */
+
+:where(.prose) :where(p, ul, ol, dl, blockquote) {
+  max-inline-size: var(--measure);
+}
+
+:where(.prose) :where(h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption) {
+  text-box: trim-both cap alphabetic;
+}
+
+/* Hyphenation needs a correct lang attribute on <html> or the content. */
+:where(.prose) :where(p, li, dd, blockquote) {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+}
+
+:where(.prose) :where(pre, code, kbd, samp, var, h1, h2, h3, h4, h5, h6) {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
+
+:where(.prose) :where(p, blockquote) {
+  hanging-punctuation: first allow-end last;
+}
+
+/* ---------- OPTIONAL: font-dependent ---------- */
+
+/* Old-style figures in running text. Only if the body font has them. */
+:where(.prose) :where(p, li) {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+/* Real sub/superscript glyphs. Only if the font has them (usually digits only). */
+@supports (font-variant-position: sub) {
+  :where(sub) {
+    vertical-align: baseline;
+    font-size: 100%;
+    line-height: inherit;
+    font-variant-position: sub;
+  }
+
+  :where(sup) {
+    vertical-align: baseline;
+    font-size: 100%;
+    line-height: inherit;
+    font-variant-position: super;
+  }
+}
+
+/* Lighter grade in dark mode. Only for variable fonts with a GRAD axis.
+ * font-variation-settings replaces rather than merges: components that set their own must repeat GRAD. */
+:root {
+  --font-grade: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-grade: -50;
+  }
+}
+
+:where(body) {
+  font-variation-settings: "GRAD" var(--font-grade);
+}
