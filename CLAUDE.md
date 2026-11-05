@@ -23,7 +23,7 @@ That is the only distribution channel: no npm package, no Claude Code plugin man
 
 - `skills/<name>/SKILL.md`: one directory per skill. The CLI discovers these. Supporting files (e.g. `RECIPES.md`, `CATALOG.md`, `STANDARDS.md`) sit next to `SKILL.md` and are linked from it, so they load only when needed.
 - `templates/SKILL.template.md`: the starting point for a new skill. It is deliberately not named `SKILL.md`, so the CLI doesn't install it.
-- `README.md`: install instructions and the **Reference** list. Every skill must have an entry there, in the right section.
+- `README.md`: install instructions and the **Reference** list. Every skill must have an entry there: one flat list, sorted alphabetically. Commands say how they are run (`Run /<name> to …`).
 
 ## Three kinds, one format
 
@@ -40,7 +40,7 @@ The `skills` CLI only installs skills, so commands and rules are skills too. The
 - `name` in the frontmatter equals the directory name (kebab-case).
 - The description decides triggering. Name neighbouring skills ("for X use `other-skill`") so skills don't compete.
 - Keep `SKILL.md` focused: hard rules and steps first, long catalogues in sibling files.
-- **Every change to a skill updates `README.md` in the same change.** That includes adding, renaming or removing a skill, and also any change to its scope or behaviour (new rules, new modes, changed triggers). The README entry must describe what the skill does now, in the right section (Skills / Commands / Rules). If the README really needs no change, check it anyway.
+- **Every change to a skill updates `README.md` in the same change.** That includes adding, renaming or removing a skill, and also any change to its scope or behaviour (new rules, new modes, changed triggers). The README entry must describe what the skill does now. If the README really needs no change, check it anyway.
 
 ## Commits
 
