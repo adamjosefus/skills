@@ -53,7 +53,19 @@ Rules for styling text with modern CSS. Apply them whenever you touch text styli
 
 - `font-size-adjust: from-font` on `body` keeps fallback fonts close to the web font's x-height, reducing the shift when the web font loads.
 - Mixing a monospace font into body text: use the `size-adjust` descriptor in its `@font-face` to match x-heights, rather than changing `font-size` everywhere it's used.
-- Variable fonts with a `GRAD` axis: lower the grade in dark mode, since light text on dark looks heavier. Set it on `:root`/`body` (it inherits), never on `*`. `font-variation-settings` replaces rather than merges, so any component that sets its own settings must repeat the `GRAD` value.
+
+## Optical weight in dark mode
+
+Light text on a dark background looks heavier than dark text on light at the same weight (irradiation: bright strokes appear to spread into the dark surround). Text should look equally heavy in both schemes, so reduce weight in dark mode, in this order of preference:
+
+1. **Grade axis (`GRAD`), if the font has one.** Lower it in dark mode, e.g. `-25` to `-50` (check the font's axis range). Grade changes stroke thickness without changing glyph widths, so nothing reflows when the theme switches.
+2. **Weight axis (`wght`), if the font is variable but has no grade.** Lower it by about 50: 400 → 350, 700 → 650. Widths change, so text may rewrap when the theme switches. That's acceptable, but check tight UI (buttons, tabs, truncation).
+3. **Static fonts:** don't swap to a lighter file just for dark mode. Reduce glare instead: use off-white on off-black, never pure `#fff` on `#000`.
+
+- Apply it with the same switch the project uses for dark mode (`prefers-color-scheme`, `[data-theme="dark"]`, `.dark`), not only the media query.
+- Drive it with one custom property (`--font-grade` / `--font-weight-shift`) set on `:root`. Set `font-variation-settings` on `body` so it inherits, never on `*`.
+- `font-variation-settings` replaces rather than merges: a component that sets its own must repeat the grade value.
+- The numbers are a starting point, not a standard. Compare both schemes side by side and tune by eye.
 
 ## Punctuation
 
