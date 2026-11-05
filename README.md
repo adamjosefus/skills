@@ -38,4 +38,4 @@ Actions you run explicitly with `/<name>`. The agent never triggers them by itse
 
 Conventions the agent follows whenever it works in the area they cover.
 
-- **[typography-css](./skills/typography-css/SKILL.md)**: Wrapping, hyphenation, vertical trim, underlines, numerals, quotes and variable fonts, scoped so they stay overridable.
+- **[typography-css](./skills/typography-css/SKILL.md)**: Wrapping, hyphenation, vertical trim, underlines, numerals, quotes, variable fonts and optical weight compensation in dark mode, scoped so they stay overridable.
